@@ -12,18 +12,29 @@
 
     <!-- Header / Navbar -->
     <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center gap-2">
             <div class="flex items-center space-x-3">
                 <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center font-bold text-xl shadow-lg shadow-blue-500/30">
                     T
                 </div>
-                <span class="text-xl font-bold tracking-wide bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                    TapToEarn Ecosystem
+                <span class="text-lg md:text-xl font-bold tracking-wide bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                    TapToEarn
                 </span>
             </div>
-            <a href="https://t.me/taparm_bot" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-xl text-sm font-semibold transition flex items-center gap-2">
-                <i class="fa-brands font-bold fa-telegram"></i> Play Now
-            </a>
+
+            <!-- Controls: Language Selector + Play Button -->
+            <div class="flex items-center gap-3">
+                <!-- Language Switcher -->
+                <div class="bg-slate-800/80 p-1 rounded-xl border border-slate-700 flex text-xs font-bold">
+                    <button onclick="setLanguage('hy')" id="btn-hy" class="px-2.5 py-1 rounded-lg text-blue-400 bg-slate-900 transition">HY</button>
+                    <button onclick="setLanguage('en')" id="btn-en" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition">EN</button>
+                    <button onclick="setLanguage('ru')" id="btn-ru" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition">RU</button>
+                </div>
+
+                <a href="https://t.me/taparm_bot" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white px-3.5 py-2 rounded-xl text-xs md:text-sm font-semibold transition flex items-center gap-2">
+                    <i class="fa-brands fa-telegram text-base"></i> <span data-i18n="navPlay">Play</span>
+                </a>
+            </div>
         </div>
     </header>
 
@@ -31,19 +42,19 @@
     <main class="max-w-6xl mx-auto px-4 py-12 flex-grow">
 
         <!-- Hero Section -->
-        <section class="text-center py-12 max-w-3xl mx-auto">
-            <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase">
+        <section class="text-center py-8 md:py-12 max-w-3xl mx-auto">
+            <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase" data-i18n="heroBadge">
                 TON Blockchain Ecosystem
             </span>
-            <h1 class="text-4xl md:text-6xl font-extrabold mt-6 mb-6 leading-tight">
+            <h1 class="text-3xl md:text-6xl font-extrabold mt-6 mb-6 leading-tight" data-i18n="heroTitle">
                 Play Mini Apps & Earn <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">ARM Tokens</span>
             </h1>
-            <p class="text-slate-400 text-lg md:text-xl mb-8">
+            <p class="text-slate-400 text-base md:text-xl mb-8" data-i18n="heroDesc">
                 Միացեք մեր էկոհամակարգին TON բլոկչեյնում։ Խաղացեք Telegram Mini App-եր, հավաքեք միավորներ և մասնակցեք ապագա Airdrop-երին։
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <a href="https://t.me/taparm_bot" target="_blank" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-lg shadow-blue-500/20 transition flex items-center justify-center gap-3">
-                    <i class="fa-brands fa-telegram text-2xl"></i> Launch ARM TAP Bot
+                    <i class="fa-brands fa-telegram text-2xl"></i> <span data-i18n="heroBtn">Launch ARM TAP Bot</span>
                 </a>
             </div>
         </section>
@@ -51,7 +62,7 @@
         <!-- Featured Project (ARM TAP) -->
         <section class="mt-8 mb-16">
             <h2 class="text-2xl font-bold mb-6 text-slate-200 flex items-center gap-2">
-                <i class="fa-solid fa-gamepad text-blue-500"></i> Ակտիվ Նախագիծ
+                <i class="fa-solid fa-gamepad text-blue-500"></i> <span data-i18n="activeProjTitle">Ակտիվ Նախագիծ</span>
             </h2>
             <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 hover:border-slate-700 transition">
                 <div class="flex items-center gap-5">
@@ -63,10 +74,10 @@
                             <h3 class="text-2xl font-bold">ARM TAP</h3>
                             <span class="bg-green-500/20 text-green-400 text-xs px-2.5 py-0.5 rounded-full border border-green-500/30">Live</span>
                         </div>
-                        <p class="text-slate-400 text-sm mt-1">Telegram Clicker Game & TON Token Mining</p>
+                        <p class="text-slate-400 text-sm mt-1" data-i18n="armDesc">Telegram Clicker Game & TON Token Mining</p>
                     </div>
                 </div>
-                <a href="https://t.me/taparm_bot" target="_blank" class="w-full md:w-auto bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-xl font-semibold transition text-center">
+                <a href="https://t.me/taparm_bot" target="_blank" class="w-full md:w-auto bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-xl font-semibold transition text-center" data-i18n="playNowBtn">
                     Խաղալ Հիմա
                 </a>
             </div>
@@ -75,7 +86,7 @@
         <!-- Ecosystem Tokens Showcase -->
         <section class="mb-12">
             <h2 class="text-2xl font-bold mb-6 text-slate-200 flex items-center gap-2">
-                <i class="fa-solid fa-coins text-indigo-400"></i> Էկոհամակարգի Տոկենները (TON)
+                <i class="fa-solid fa-coins text-indigo-400"></i> <span data-i18n="tokensTitle">Էկոհամակարգի Տոկենները (TON)</span>
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
@@ -85,7 +96,7 @@
                         <span class="font-bold text-lg text-blue-400">ARM Token</span>
                         <span class="text-xs bg-blue-500/10 text-blue-400 px-2 py-1 rounded">Primary</span>
                     </div>
-                    <p class="text-xs text-slate-400 mb-4">ARM TAP խաղի հիմնական ներխաղային և էկոհամակարգային տոկենը TON բլոկչեյնում։</p>
+                    <p class="text-xs text-slate-400 mb-4" data-i18n="token1Desc">ARM TAP խաղի հիմնական ներխաղային և էկոհամակարգային տոկենը TON բլոկչեյնում։</p>
                     <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 text-xs text-slate-400 font-mono truncate">
                         TON Network Active
                     </div>
@@ -97,7 +108,7 @@
                         <span class="font-bold text-lg text-indigo-400">Token #2</span>
                         <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">TON Token</span>
                     </div>
-                    <p class="text-xs text-slate-400 mb-4">Էկոհամակարգային 2-րդ տոկենը՝ նախատեսված հատուկ բոնուսների համար։</p>
+                    <p class="text-xs text-slate-400 mb-4" data-i18n="token2Desc">Էկոհամակարգային 2-րդ տոկենը՝ նախատեսված հատուկ բոնուսների համար։</p>
                     <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 text-xs text-slate-400 font-mono truncate">
                         Deployed on TON
                     </div>
@@ -107,9 +118,9 @@
                 <div class="bg-slate-900/60 border border-slate-800/80 p-6 rounded-2xl">
                     <div class="flex items-center justify-between mb-4">
                         <span class="font-bold text-lg text-purple-400">Token #3</span>
-                        <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">Coming Soon</span>
+                        <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded" data-i18n="comingSoon">Coming Soon</span>
                     </div>
-                    <p class="text-xs text-slate-400 mb-4">Ապագա նախագծերի և Staking մեխանիզմների համար նախատեսված տոկեն։</p>
+                    <p class="text-xs text-slate-400 mb-4" data-i18n="token3Desc">Ապագա նախագծերի և Staking մեխանիզմների համար նախատեսված տոկեն։</p>
                     <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 text-xs text-slate-400 font-mono truncate">
                         Deployed on TON
                     </div>
@@ -132,5 +143,76 @@
         </div>
     </footer>
 
+    <!-- Translations JavaScript -->
+    <script>
+        const translations = {
+            hy: {
+                navPlay: "Խաղալ",
+                heroBadge: "TON Բլոկչեյն Էկոհամակարգ",
+                heroTitle: 'Խաղացեք Mini App-եր & Վաստակեք <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">ARM Տոկեններ</span>',
+                heroDesc: "Միացեք մեր էկոհամակարգին TON բլոկչեյնում։ Խաղացեք Telegram Mini App-եր, հավաքեք միավորներ և մասնակցեք ապագա Airdrop-երին։",
+                heroBtn: "Միացնել ARM TAP Բոտը",
+                activeProjTitle: "Ակտիվ Նախագիծ",
+                armDesc: "Telegram Clicker Khagh & TON Token Mining",
+                playNowBtn: "Խաղալ Հիմա",
+                tokensTitle: "Էկոհամակարգի Տոկենները (TON)",
+                token1Desc: "ARM TAP խաղի հիմնական ներխաղային և էկոհամակարգային տոկենը TON բլոկչեյնում։",
+                token2Desc: "Էկոհամակարգային 2-րդ տոկենը՝ նախատեսված հատուկ բոնուսների համար։",
+                token3Desc: "Ապագա նախագծերի և Staking մեխանիզմների համար նախատեսված տոկեն։",
+                comingSoon: "Շուտով"
+            },
+            en: {
+                navPlay: "Play Now",
+                heroBadge: "TON Blockchain Ecosystem",
+                heroTitle: 'Play Mini Apps & Earn <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">ARM Tokens</span>',
+                heroDesc: "Join our ecosystem on the TON blockchain. Play Telegram Mini Apps, collect points, and qualify for future Airdrops.",
+                heroBtn: "Launch ARM TAP Bot",
+                activeProjTitle: "Active Project",
+                armDesc: "Telegram Clicker Game & TON Token Mining",
+                playNowBtn: "Play Now",
+                tokensTitle: "Ecosystem Tokens (TON)",
+                token1Desc: "The main in-game and ecosystem token for ARM TAP on the TON blockchain.",
+                token2Desc: "Ecosystem token #2 designed for special community bonuses.",
+                token3Desc: "Token allocated for future staking mechanisms and expanding utilities.",
+                comingSoon: "Coming Soon"
+            },
+            ru: {
+                navPlay: "Играть",
+                heroBadge: "Экосистема TON Blockchain",
+                heroTitle: 'Играйте в Mini Apps & Зарабатывайте <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">Токены ARM</span>',
+                heroDesc: "Присоединяйтесь к нашей экосистеме на блокчейне TON. Играйте в Telegram Mini Apps, коплите очки и участвуйте в будущих Airdrop.",
+                heroBtn: "Запустить ARM TAP Бота",
+                activeProjTitle: "Активный Проект",
+                armDesc: "Telegram кликер-игра и майнинг токенов TON",
+                playNowBtn: "Играть Сейчас",
+                tokensTitle: "Токены Экосистемы (TON)",
+                token1Desc: "Основной игровой и экосистемный токен игры ARM TAP на блокчейне TON.",
+                token2Desc: "Второй токен экосистемы, предназначенный для специальных бонусов.",
+                token3Desc: "Токен для будущих механизмов стейкинга и расширения экосистемы.",
+                comingSoon: "Скоро"
+            }
+        };
+
+        function setLanguage(lang) {
+            // Update Text
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Update Buttons Styling
+            ['hy', 'en', 'ru'].forEach(l => {
+                const btn = document.getElementById(`btn-${l}`);
+                if (l === lang) {
+                    btn.className = "px-2.5 py-1 rounded-lg text-blue-400 bg-slate-900 transition";
+                } else {
+                    btn.className = "px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition";
+                }
+            });
+        }
+    </script>
 </body>
 </html>
