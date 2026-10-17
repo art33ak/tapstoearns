@@ -1,134 +1,221 @@
 <!DOCTYPE html>
-<html lang="hy" class="dark">
+<html lang="hy">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARM TAP | Web3 Ecosystem & Token</title>
+    <title>TapToEarn Ecosystem | TON Mini Apps & Tokens</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            blue: '#0088cc',
-                            dark: '#090d16',
-                            card: '#131c2e'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- TON Connect UI SDK -->
     <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
 </head>
-<body class="bg-[#090d16] text-white min-h-screen flex flex-col justify-between font-sans selection:bg-blue-500 selection:text-white">
+<body class="bg-slate-950 text-white min-h-screen flex flex-col justify-between font-sans">
 
     <!-- Header / Navbar -->
-    <header class="border-b border-slate-800/80 bg-[#090d16]/90 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center gap-2">
             <div class="flex items-center space-x-3">
-                <span class="text-2xl font-black bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">ARM ECOSYSTEM</span>
+                <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center font-bold text-xl shadow-lg shadow-blue-500/30">
+                    T
+                </div>
+                <span class="text-lg md:text-xl font-bold tracking-wide bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                    TapToEarn
+                </span>
             </div>
-            
-            <div class="flex items-center space-x-4">
-                <!-- Language Switcher -->
-                <select id="langSelect" onchange="changeLanguage(this.value)" class="bg-slate-800 text-sm text-gray-300 rounded-xl px-3 py-2 border border-slate-700/80 focus:outline-none focus:border-blue-500 transition">
-                    <option value="hy">🇦🇲 HY</option>
-                    <option value="en">🇬🇧 EN</option>
-                    <option value="ru">🇷🇺 RU</option>
-                </select>
 
-                <!-- TON Connect Wallet Button Root -->
+            <!-- Controls: Language Selector + TON Connect Wallet Button + Play Button -->
+            <div class="flex items-center gap-2 md:gap-3">
+                <!-- Language Switcher -->
+                <div class="bg-slate-800/80 p-1 rounded-xl border border-slate-700 flex text-xs font-bold">
+                    <button onclick="setLanguage('hy')" id="btn-hy" class="px-2.5 py-1 rounded-lg text-blue-400 bg-slate-900 transition">HY</button>
+                    <button onclick="setLanguage('en')" id="btn-en" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition">EN</button>
+                    <button onclick="setLanguage('ru')" id="btn-ru" class="px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition">RU</button>
+                </div>
+
+                <!-- TON Connect Wallet Button -->
                 <div id="ton-connect"></div>
+
+                <a href="https://t.me/taparm_bot" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white px-3.5 py-2 rounded-xl text-xs md:text-sm font-semibold transition flex items-center gap-2">
+                    <i class="fa-brands fa-telegram text-base"></i> <span data-i18n="navPlay">Play</span>
+                </a>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <main class="max-w-5xl mx-auto px-6 py-16 md:py-24 text-center my-auto">
-        <div class="inline-block mb-4 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold tracking-wider uppercase">
-            Powered by TON Blockchain
-        </div>
-        <h1 id="hero-title" class="text-4xl md:text-6xl font-black mb-6 tracking-tight">
-            The Future of Web3 Gaming & Tokens
-        </h1>
-        <p id="hero-desc" class="text-base md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Welcome to the official ARM ecosystem hub. Play ARM TAP on Telegram, build your balance, connect your wallet, and prepare for upcoming airdrops.
-        </p>
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-12 flex-grow">
 
-        <!-- Action Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-            <!-- Game Card -->
-            <div class="bg-[#131c2e] border border-slate-800 rounded-3xl p-8 hover:border-blue-500/50 transition duration-300 shadow-xl group">
-                <div class="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition duration-300">🎮</div>
-                <h3 id="card1-title" class="text-2xl font-bold mb-3">ARM TAP Game</h3>
-                <p id="card1-desc" class="text-gray-400 text-sm mb-6 leading-relaxed">Tap, earn points, and complete daily social quests inside our official Telegram Mini App.</p>
-                <a href="https://t.me/taparm_bot" target="_blank" class="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm py-3 px-6 rounded-2xl transition shadow-lg shadow-blue-600/20">
-                    Play on Telegram 🚀
+        <!-- Hero Section -->
+        <section class="text-center py-8 md:py-12 max-w-3xl mx-auto">
+            <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase" data-i18n="heroBadge">
+                TON Blockchain Ecosystem
+            </span>
+            <h1 class="text-3xl md:text-6xl font-extrabold mt-6 mb-6 leading-tight" data-i18n="heroTitle">
+                Play Mini Apps & Earn <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">ARM Tokens</span>
+            </h1>
+            <p class="text-slate-400 text-base md:text-xl mb-8" data-i18n="heroDesc">
+                Միացեք մեր էկոհամակարգին TON բլոկչեյնում։ Խաղացեք Telegram Mini App-եր, հավաքեք միավորներ և մասնակցեք ապագա Airdrop-երին։
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://t.me/taparm_bot" target="_blank" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-lg shadow-blue-500/20 transition flex items-center justify-center gap-3">
+                    <i class="fa-brands fa-telegram text-2xl"></i> <span data-i18n="heroBtn">Launch ARM TAP Bot</span>
                 </a>
             </div>
+        </section>
 
-            <!-- Token Card -->
-            <div class="bg-[#131c2e] border border-slate-800 rounded-3xl p-8 hover:border-indigo-500/50 transition duration-300 shadow-xl group">
-                <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition duration-300">💎</div>
-                <h3 id="card2-title" class="text-2xl font-bold mb-3">ARM Token & Hub</h3>
-                <p id="card2-desc" class="text-gray-400 text-sm mb-6 leading-relaxed">Connect your TON wallet to securely interact with the ecosystem and track your rewards.</p>
-                <div class="flex items-center justify-between bg-slate-900/60 border border-slate-800/80 py-3 px-4 rounded-2xl">
-                    <span class="text-xs text-gray-400 font-medium">Network Status</span>
-                    <span class="inline-flex items-center space-x-1.5 text-emerald-400 text-xs font-semibold">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                        <span>Active on TON</span>
-                    </span>
+        <!-- Featured Project (ARM TAP) -->
+        <section class="mt-8 mb-16">
+            <h2 class="text-2xl font-bold mb-6 text-slate-200 flex items-center gap-2">
+                <i class="fa-solid fa-gamepad text-blue-500"></i> <span data-i18n="activeProjTitle">Ակտիվ Նախագիծ</span>
+            </h2>
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 hover:border-slate-700 transition">
+                <div class="flex items-center gap-5">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-3xl font-black shadow-xl">
+                        ARM
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 class="text-2xl font-bold">ARM TAP</h3>
+                            <span class="bg-green-500/20 text-green-400 text-xs px-2.5 py-0.5 rounded-full border border-green-500/30">Live</span>
+                        </div>
+                        <p class="text-slate-400 text-sm mt-1" data-i18n="armDesc">Telegram Clicker Game & TON Token Mining</p>
+                    </div>
                 </div>
+                <a href="https://t.me/taparm_bot" target="_blank" class="w-full md:w-auto bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-xl font-semibold transition text-center" data-i18n="playNowBtn">
+                    Խաղալ Հիմա
+                </a>
             </div>
-        </div>
+        </section>
+
+        <!-- Ecosystem Tokens Showcase -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-slate-200 flex items-center gap-2">
+                <i class="fa-solid fa-coins text-indigo-400"></i> <span data-i18n="tokensTitle">Էկոհամակարգի Տոկենները (TON)</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Token 1 (ARM) -->
+                <div class="bg-slate-900/60 border border-slate-800/80 p-6 rounded-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="font-bold text-lg text-blue-400">ARM Token</span>
+                        <span class="text-xs bg-blue-500/10 text-blue-400 px-2 py-1 rounded">Primary</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mb-4" data-i18n="token1Desc">ARM TAP խաղի հիմնական ներխաղային և էկոհամակարգային տոկենը TON բլոկչեյնում։</p>
+                    <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 text-xs text-slate-400 font-mono truncate">
+                        TON Network Active
+                    </div>
+                </div>
+
+                <!-- Token 2 -->
+                <div class="bg-slate-900/60 border border-slate-800/80 p-6 rounded-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="font-bold text-lg text-indigo-400">Token #2</span>
+                        <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded">TON Token</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mb-4" data-i18n="token2Desc">Էկոհամակարգային 2-րդ տոկենը՝ նախատեսված հատուկ բոնուսների համար։</p>
+                    <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 text-xs text-slate-400 font-mono truncate">
+                        Deployed on TON
+                    </div>
+                </div>
+
+                <!-- Token 3 -->
+                <div class="bg-slate-900/60 border border-slate-800/80 p-6 rounded-2xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="font-bold text-lg text-purple-400">Token #3</span>
+                        <span class="text-xs bg-slate-800 text-slate-400 px-2 py-1 rounded" data-i18n="comingSoon">Coming Soon</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mb-4" data-i18n="token3Desc">Ապագա նախագծերի և Staking մեխանիզմների համար նախատեսված տոկեն։</p>
+                    <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 text-xs text-slate-400 font-mono truncate">
+                        Deployed on TON
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800/80 py-8 text-center text-xs text-gray-500">
-        <p>© 2026 TapToEarn.site | ARM Ecosystem. All Rights Reserved.</p>
+    <footer class="border-t border-slate-800 bg-slate-900/30 py-8 text-center text-sm text-slate-500">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>© 2026 TapToEarn.site | All rights reserved.</p>
+            <div class="flex items-center space-x-6 text-xl">
+                <a href="https://t.me/taparm_bot" target="_blank" class="hover:text-blue-400 transition">
+                    <i class="fa-brands fa-telegram"></i>
+                </a>
+            </div>
+        </div>
     </footer>
 
-    <!-- Multilingual & TON Connect Script -->
+    <!-- Scripts -->
     <script>
+        // Multi-language Translation Logic
         const translations = {
             hy: {
-                title: "Web3 Խաղերի և Տոկենների Ապագան",
-                desc: "Բարի գալուստ ARM էկոհամակարգի պաշտոնական հարթակ։ Խաղացեք ARM TAP Telegram-ում, հավաքեք միավորներ, միացրեք դրամապանակը և պատրաստվեք աերդրոպներին։",
-                card1Title: "ARM TAP Խաղ",
-                card1Desc: "Կտտացրեք, վաստակեք միավորներ և կատարեք ամենօրյա առաջադրանքները մեր պաշտոնական Telegram Մինի Հավելվածում։",
-                card2Title: "ARM Տոկեն և Հարթակ",
-                card2Desc: "Միացրեք ձեր TON դրամապանակը՝ էկոհամակարգի հետ անվտանգ փոխազդելու և ձեր բոնուսները հետևելու համար։"
+                navPlay: "Խաղալ",
+                heroBadge: "TON Բլոկչեյն Էկոհամակարգ",
+                heroTitle: 'Խաղացեք Mini App-եր & Վաստակեք <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">ARM Տոկեններ</span>',
+                heroDesc: "Միացեք մեր էկոհամակարգին TON բլոկչեյնում։ Խաղացեք Telegram Mini App-եր, հավաքեք միավորներ և մասնակցեք ապագա Airdrop-երին։",
+                heroBtn: "Միացնել ARM TAP Բոտը",
+                activeProjTitle: "Ակտիվ Նախագիծ",
+                armDesc: "Telegram Clicker Khagh & TON Token Mining",
+                playNowBtn: "Խաղալ Հիմա",
+                tokensTitle: "Էկոհամակարգի Տոկենները (TON)",
+                token1Desc: "ARM TAP խաղի հիմնական ներխաղային և էկոհամակարգային տոկենը TON բլոկչեյնում։",
+                token2Desc: "Էկոհամակարգային 2-րդ տոկենը՝ նախատեսված հատուկ բոնուսների համար։",
+                token3Desc: "Ապագա նախագծերի և Staking մեխանիզմների համար նախատեսված տոկեն։",
+                comingSoon: "Շուտով"
             },
             en: {
-                title: "The Future of Web3 Gaming & Tokens",
-                desc: "Welcome to the official ARM ecosystem hub. Play ARM TAP on Telegram, build your balance, connect your wallet, and prepare for upcoming airdrops.",
-                card1Title: "ARM TAP Game",
-                card1Desc: "Tap, earn points, and complete daily social quests inside our official Telegram Mini App.",
-                card2Title: "ARM Token & Hub",
-                card2Desc: "Connect your TON wallet to securely interact with the ecosystem and track your rewards."
+                navPlay: "Play Now",
+                heroBadge: "TON Blockchain Ecosystem",
+                heroTitle: 'Play Mini Apps & Earn <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">ARM Tokens</span>',
+                heroDesc: "Join our ecosystem on the TON blockchain. Play Telegram Mini Apps, collect points, and qualify for future Airdrops.",
+                heroBtn: "Launch ARM TAP Bot",
+                activeProjTitle: "Active Project",
+                armDesc: "Telegram Clicker Game & TON Token Mining",
+                playNowBtn: "Play Now",
+                tokensTitle: "Ecosystem Tokens (TON)",
+                token1Desc: "The main in-game and ecosystem token for ARM TAP on the TON blockchain.",
+                token2Desc: "Ecosystem token #2 designed for special community bonuses.",
+                token3Desc: "Token allocated for future staking mechanisms and expanding utilities.",
+                comingSoon: "Coming Soon"
             },
             ru: {
-                title: "Будущее Web3 Игр и Токенов",
-                desc: "Добро пожаловать на официальный хаб экосистемы ARM. Играйте в ARM TAP в Telegram, накапливайте баланс и готовьтесь к аирдропам.",
-                card1Title: "Игра ARM TAP",
-                card1Desc: "Тапайте, зарабатывайте очки и выполняйте ежедневные задания в нашем официальном Telegram Mini App.",
-                card2Title: "Токен ARM и Хаб",
-                card2Desc: "Подключите ваш TON кошелек для безопасного взаимодействия с экосистемой и отслеживания наград."
+                navPlay: "Играть",
+                heroBadge: "Экосистема TON Blockchain",
+                heroTitle: 'Играйте в Mini Apps & Зарабатывайте <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">Токены ARM</span>',
+                heroDesc: "Присоединяйтесь к нашей экосистеме на блокчейне TON. Играйте в Telegram Mini Apps, коплите очки и участвуйте в будущих Airdrop.",
+                heroBtn: "Запустить ARM TAP Бота",
+                activeProjTitle: "Активный Проект",
+                armDesc: "Telegram кликер-игра и майнинг токенов TON",
+                playNowBtn: "Играть Сейчас",
+                tokensTitle: "Токены Экосистемы (TON)",
+                token1Desc: "Основной игровой и экосистемный токен игры ARM TAP на блокчейне TON.",
+                token2Desc: "Второй токен экосистемы, предназначенный для специальных бонусов.",
+                token3Desc: "Токен для будущих механизмов стейкинга и расширения экосистемы.",
+                comingSoon: "Скоро"
             }
         };
 
-        function changeLanguage(lang) {
-            document.getElementById('hero-title').innerText = translations[lang].title;
-            document.getElementById('hero-desc').innerText = translations[lang].desc;
-            document.getElementById('card1-title').innerText = translations[lang].card1Title;
-            document.getElementById('card1-desc').innerText = translations[lang].card1Desc;
-            document.getElementById('card2-title').innerText = translations[lang].card2Title;
-            document.getElementById('card2-desc').innerText = translations[lang].card2Desc;
+        function setLanguage(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            ['hy', 'en', 'ru'].forEach(l => {
+                const btn = document.getElementById(`btn-${l}`);
+                if (l === lang) {
+                    btn.className = "px-2.5 py-1 rounded-lg text-blue-400 bg-slate-900 transition";
+                } else {
+                    btn.className = "px-2.5 py-1 rounded-lg text-slate-400 hover:text-white transition";
+                }
+            });
         }
 
         // Initialize TON Connect UI
